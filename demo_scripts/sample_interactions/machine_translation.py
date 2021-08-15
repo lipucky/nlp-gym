@@ -16,8 +16,7 @@ with open(os.path.expanduser("~/KiwiCutter/WMT19/small/train.pe"), "r") as f:
 env = NeuralMachineTranslationEnv(corpus=wmt_data_de, reward_function=SimpleBLEUReward())
 
 for en_sent, de_sent in zip(wmt_data_en, wmt_data_de):
-    de_sent = de_sent.lower()
-    env.add_sample(Sample(en_sent, re.findall(r"\w+|[^\w\s]", de_sent, re.UNICODE)))
+    env.add_sample(Sample(en_sent, re.findall(r"\w+|[^\w\s]", de_sent.lower(), re.UNICODE)))
 
 done = False
 state = env.reset()
